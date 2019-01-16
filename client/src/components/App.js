@@ -1,39 +1,63 @@
 import React from "react";
-import Person from "./Person";
 import "./App.pcss";
+import personService from "../services/person";
+import PersonList from "./PersonList";
+import AddPersonForm from "./AddPersonForm";
 
 class App extends React.Component {
   state = {
-    persons: [
-      {
-        id: "one",
-        firstName: "Jere",
-        lastName: "Hirvonen",
-        gender: "m",
-        age: 25,
-        salary: 4000
-      },
-      {
-        id: "two",
-        firstName: "Pekkiina",
-        lastName: "Lussukainen",
-        gender: "f",
-        age: 45,
-        salary: 5500
-      }
-    ]
+    persons: []
+  };
+
+  async componentDidMount() {
+    const persons = await personService.getPersons();
+
+    this.setState(() => ({
+      persons
+    }));
+  }
+
+  firePerson = id => {
+    return this.setState(state => {
+      return {
+        persons: state.persons.filter(p => p.id !== id)
+      };
+    });
+  };
+
+  hirePerson = person => {
+    return this.setState(state => {
+      return {
+        persons: state.persons.concat([person])
+      };
+    });
   };
 
   render() {
     const { persons } = this.state;
 
+    const isGood = person => {
+      return person.gender === "m" && person.age < 30;
+    };
+
+    const goodPersons = persons.filter(isGood);
+    const badPersons = persons.filter(p => !isGood(p));
+
     return (
       <div>
         <h1>Fraktio Fudulotto</h1>
-        <p>Tool for maximizing company profitability</p>
-        {persons.map(person => (
-          <Person key={person.id} person={person} />
-        ))}
+
+        <AddPersonForm hirePerson={this.hirePerson} />
+
+        <h2>Bad people</h2>
+        <PersonList
+          firePerson={this.firePerson}
+          showMetadata
+          persons={badPersons}
+        />
+
+        <h2>Good people</h2>
+        <PersonList firePerson={this.firePerson} persons={goodPersons} />
       </div>
     );
   }
