@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Person.pcss";
 import cx from "classnames";
+import Button from "./Button";
 
 const Person = props => {
   const { person, firePerson } = props;
@@ -18,9 +19,9 @@ const Person = props => {
         {person.age.toFixed(2)})
       </div>
       <div>
-        <button onClick={() => firePerson(person.id)}>
+        <Button onClick={() => firePerson(person.id)}>
           LIBERATE <span>💩</span>
-        </button>
+        </Button>
       </div>
     </div>
   );

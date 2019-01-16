@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 import uuid from "uuid";
+import Button from "./Button";
 
 const AddPersonForm = props => {
   const { hirePerson } = props;
@@ -49,7 +50,7 @@ const AddPersonForm = props => {
               />
             </div>
             <div>
-              <button type="submit">Hire person</button>
+              <Button type="submit">Hire person</Button>
             </div>
           </form>
         );
