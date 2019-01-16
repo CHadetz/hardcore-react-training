@@ -1,0 +1,21 @@
+.person {
+  /* No nesting! */
+  border: 10px solid rgb(0, 0, 0);
+  border-radius: 7px;
+  padding: 1em;
+  margin: 1em 0;
+
+  /* Pseudos can be nested =) */
+  &:hover {
+    border-style: dashed;
+    border-color: salmon;
+  }
+}
+
+.male {
+  background-color: rgb(200, 200, 255);
+}
+
+.female {
+  background-color: rgb(255, 200, 200);
+}
