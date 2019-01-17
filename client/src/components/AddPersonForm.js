@@ -50,7 +50,7 @@ const AddPersonForm = props => {
               />
             </div>
             <div>
-              <Button type="submit">Hire person</Button>
+              <Button type="submit">$$$ Hire person $$$</Button>
             </div>
           </form>
         );

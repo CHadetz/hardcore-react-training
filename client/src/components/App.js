@@ -1,7 +1,10 @@
 import React from "react";
 import "./App.pcss";
-import PersonList from "./PersonList";
-import AddPersonForm from "./AddPersonForm";
+import Loading from "./Loading";
+import { Switch, Route } from "react-router";
+
+import IndexPage from "./containers/IndexPageContainer";
+import PersonPage from "./containers/PersonPageContainer";
 
 class App extends React.Component {
   async componentDidMount() {
@@ -10,30 +13,22 @@ class App extends React.Component {
   }
 
   render() {
-    const { persons, hirePerson, firePerson } = this.props;
-
-    const isGood = person => {
-      return person.gender === "m" && person.age < 30;
-    };
-
-    const goodPersons = persons.filter(isGood);
-    const badPersons = persons.filter(p => !isGood(p));
-
+    const { loading } = this.props;
     const imgSrc =
       "https://vignette.wikia.nocookie.net/pyruslords/images/5/51/Derp_Face.png/revision/latest?cb=20130515193137";
 
     return (
       <div>
-        <img src={imgSrc} />
-        <h1>DERP ERP 4000</h1>
+        {loading && <Loading />}
+        <header>
+          <img src={imgSrc} />
+          <h1>DERP ERP 4000</h1>
+        </header>
 
-        <AddPersonForm hirePerson={hirePerson} />
-
-        <h2>Bad people</h2>
-        <PersonList firePerson={firePerson} showMetadata persons={badPersons} />
-
-        <h2>Good people</h2>
-        <PersonList firePerson={firePerson} persons={goodPersons} />
+        <Switch>
+          <Route path="/" exact component={IndexPage} />
+          <Route path="/person/:id" component={PersonPage} />
+        </Switch>
       </div>
     );
   }

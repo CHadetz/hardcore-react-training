@@ -10,7 +10,6 @@
   /* Pseudos can be nested =) */
   &:hover {
     border-style: dashed;
-    border-color: salmon;
   }
 }
 
@@ -20,4 +19,20 @@
 
 .female {
   background-color: rgb(255, 200, 200);
+}
+
+@keyframes reuna {
+  0% {
+    border-color: green;
+  }
+  ,
+  100% {
+    border-color: salmon;
+  }
+}
+
+.isBeingFired {
+  border-style: dashed;
+  border-color: salmon;
+  animation: reuna 0.4s infinite;
 }
