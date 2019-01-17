@@ -1,12 +1,13 @@
 import React from "react";
 import Person from "./Person";
 import PropTypes from "prop-types";
+import ImmutablePropTypes from "react-immutable-proptypes";
 
 const PersonList = props => {
   const { persons, showMetadata, firePerson } = props;
 
   const averageAge =
-    persons.reduce((r, person) => r + person.age, 0) / persons.length;
+    persons.reduce((r, person) => r + person.age, 0) / persons.count();
 
   return (
     <div>
@@ -26,7 +27,7 @@ const PersonList = props => {
 
 PersonList.propTypes = {
   firePerson: PropTypes.func.isRequired,
-  persons: PropTypes.array.isRequired,
+  persons: ImmutablePropTypes.list.isRequired,
   showMetadata: PropTypes.bool.isRequired
 };
 
