@@ -46,7 +46,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <h1>Fraktio Fudulotto</h1>
+        <h1>FRAKTIO HYPERP</h1>
 
         <AddPersonForm hirePerson={this.hirePerson} />
 

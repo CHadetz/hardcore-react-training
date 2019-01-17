@@ -13,7 +13,7 @@ const PersonList = props => {
     <div>
       {showMetadata && (
         <>
-          <p>Number of people: {persons.length}</p>
+          <p>Number of people: {persons.count()}</p>
           <p>Average age: {averageAge.toFixed(2)}</p>
         </>
       )}
